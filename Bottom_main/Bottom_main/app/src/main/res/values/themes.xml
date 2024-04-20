@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ButtomNavigation" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color, -->
+    <style name="Theme.BottomNavigationDemo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/lavender</item>
         <item name="colorPrimaryVariant">@color/lavender</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -11,8 +11,12 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your light theme here. -->
+        <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.ButtomNavigation" parent="Base.Theme.ButtomNavigation" />
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
 </resources>
