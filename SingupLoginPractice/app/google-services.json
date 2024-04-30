@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "323034090113",
+    "project_id": "singup-login-practice",
+    "storage_bucket": "singup-login-practice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323034090113:android:b05d7c09d9d3bcb3d19b80",
+        "android_client_info": {
+          "package_name": "com.example.singuploginpractice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzfQujLVjrzw59l5iKeHBxQ0705rln4Lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
