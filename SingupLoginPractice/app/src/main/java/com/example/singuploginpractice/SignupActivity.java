@@ -1,5 +1,6 @@
 package com.example.singuploginpractice;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,8 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -37,19 +42,32 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-               database = FirebaseDatabase.getInstance();
-               reference = database.getReference("users");
-               String name = signupName.getText().toString();
-               String email = signupEmail.getText().toString();
-               String username = signupUsername.getText().toString();
-               String password = signupPassword.getText().toString();
 
-               HelperClass helperClass = new HelperClass(name, email, username, password);
-               reference.child(name).setValue(helperClass);
 
-               Toast.makeText(SignupActivity.this, "你已經註冊成功!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-               startActivity(intent);
+
+                if(!validateName() | !validateUserEmail() | !validateUsername() | !validatePassword())
+                {
+                    Toast.makeText(SignupActivity.this, "您註冊失敗!", Toast.LENGTH_SHORT).show();
+                }
+                else if(!validateName() && !validateUserEmail() && !validateUsername() && !validatePassword())
+                {
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("users");
+                    String name = signupName.getText().toString();
+                    String email = signupEmail.getText().toString();
+                    String username = signupUsername.getText().toString();
+                    String password = signupPassword.getText().toString();
+
+                    HelperClass helperClass = new HelperClass(name, email, username, password);
+                    reference.child(name).setValue(helperClass);
+                    Toast.makeText(SignupActivity.this, "你註冊成功!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(SignupActivity.this, "您註冊失敗!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -62,4 +80,63 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+    public Boolean validateName()
+    {
+        String val = signupName.getText().toString();
+        if(val.isEmpty())
+        {
+            signupName.setError("未輸入註冊名字!");
+            return false;
+        }
+        else
+        {
+            signupName.setError(null);
+            return true;
+        }
+    }
+    public Boolean validateUserEmail()
+    {
+        String val = signupEmail.getText().toString();
+        if(val.isEmpty())
+        {
+            signupEmail.setError("未輸入註冊信箱!");
+            return false;
+        }
+        else
+        {
+            signupEmail.setError(null);
+            return true;
+        }
+    }
+    public Boolean validateUsername()
+    {
+        String val = signupUsername.getText().toString();
+        if(val.isEmpty())
+        {
+            signupUsername.setError("未輸入註冊使用者名稱!");
+            return false;
+        }
+        else
+        {
+            signupEmail.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validatePassword()
+    {
+        String val = signupPassword.getText().toString();
+        if(val.isEmpty())
+        {
+            signupPassword.setError("未輸入註冊密碼!");
+            return false;
+        }
+        else
+        {
+            signupPassword.setError(null);
+            return true;
+        }
+    }
+
+
 }

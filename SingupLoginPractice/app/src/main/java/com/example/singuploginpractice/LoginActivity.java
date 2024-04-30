@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText loginUsername, loginPassword;
@@ -61,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         String val = loginUsername.getText().toString();
         if(val.isEmpty())
         {
-            loginUsername.setError("Username cannot be empty");
+            loginUsername.setError("未輸入使用者名稱!");
             return false;
         }
         else
@@ -76,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         String val = loginPassword.getText().toString();
         if(val.isEmpty())
         {
-            loginPassword.setError("Password cannot be empty");
+            loginPassword.setError("未輸入密碼!");
             return false;
         }
         else
@@ -105,27 +107,21 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordFromDB = snapshot.child(userUsername).child("password").getValue(String.class);
 
 
-                    if (passwordFromDB.equals(userPassword)) {
+                    if (passwordFromDB.equals(userPassword))
+                    {
                         loginUsername.setError(null);
-                        String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
-                        String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                        String usernameFromDB = snapshot.child(userUsername).child("username").getValue(String.class);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("name", nameFromDB);
-                        intent.putExtra("email", emailFromDB);
-                        intent.putExtra("username", usernameFromDB);
-                        intent.putExtra("password", passwordFromDB);
                         startActivity(intent);
                     }
                     else
                     {
-                        loginPassword.setError("Invalid Credentials");
+                        loginPassword.setError("您輸入的密碼錯誤!");
                         loginPassword.requestFocus();
                     }
                 }
                 else
                 {
-                    loginUsername.setError("User does not exist");
+                    loginUsername.setError("使用者名稱不存在");
                     loginUsername.requestFocus();
                 }
 
