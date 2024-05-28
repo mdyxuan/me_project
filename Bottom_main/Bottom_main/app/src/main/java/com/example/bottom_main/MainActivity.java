@@ -79,10 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         videoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 dialog.dismiss();
-                Toast.makeText(MainActivity.this,"Upload a Video is clicked",Toast.LENGTH_SHORT).show();
+                replaceFragment(new CallFragment());
+                Toast.makeText(MainActivity.this,"創建召集版",Toast.LENGTH_SHORT).show();
 
             }
         });
