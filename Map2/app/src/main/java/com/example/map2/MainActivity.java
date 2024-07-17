@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void getLastLocation() {
+
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
             return;
@@ -46,13 +47,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(location != null){
+                if (location != null) {
                     currentLocation = location;
+
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
                     mapFragment.getMapAsync(MainActivity.this);
-                } else {
-                    // Handle case where location is null
-                    Toast.makeText(MainActivity.this, "无法获取当前位置信息", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -60,25 +59,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+
         myMap = googleMap;
-        if (currentLocation != null) {
-            LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-            myMap.addMarker(new MarkerOptions().position(currentLatLng).title("我的位置"));
-            myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f));
-        } else {
-            // Handle case where currentLocation is null
-            Toast.makeText(this, "无法获取当前位置信息", Toast.LENGTH_SHORT).show();
-        }
+        //LatLng Taiwan = new LatLng(23.6978, 120.9605);
+        LatLng Taiwan = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        //myMap.addMarker(new MarkerOptions().position(Taiwan).title("Taiwan"));
+        //myMap.moveCamera(CameraUpdateFactory.newLatLng(Taiwan));
+        //MarkerOptions options = new MarkerOptions().position(Taiwan).title("我的位置");
+        //options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        //myMap.addMarker(options);
+        myMap.addMarker(new MarkerOptions().position(Taiwan).title("我的位置"));
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(Taiwan));
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == FINE_PERMISSION_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == FINE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();
-            }
-            else {
-                Toast.makeText(this, "位置权限被拒绝，请允许权限", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "位置權限被拒絕，請允許權限", Toast.LENGTH_SHORT).show();
             }
         }
     }
