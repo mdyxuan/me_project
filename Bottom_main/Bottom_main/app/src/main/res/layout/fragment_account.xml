@@ -31,13 +31,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
+                        android:layout_marginEnd="160dp"
                         android:text="使用者名稱"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:layout_editor_absoluteX="155dp" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <ImageView
                         android:id="@+id/imageView"
@@ -97,30 +98,32 @@
                         android:layout_width="41dp"
                         android:layout_height="85dp"
                         android:src="@drawable/btn_1"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textView3"
-                        app:layout_constraintHorizontal_bias="0.045"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="-15dp" />
+                        app:layout_constraintHorizontal_bias="0.421"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
                         android:text="通知"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="61dp" />
+                        tools:layout_editor_absoluteX="79dp" />
 
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="24dp"
                         android:layout_height="40dp"
+                        android:layout_marginEnd="28dp"
                         android:src="@drawable/arrow"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="364dp" />
+                        app:layout_constraintVertical_bias="0.488" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
