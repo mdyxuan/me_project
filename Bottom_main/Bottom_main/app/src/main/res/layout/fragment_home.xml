@@ -15,4 +15,13 @@
         android:textSize="30sp"
         android:textColor="@color/white" />
 
+
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:menu="@menu/toolbar_menu"
+        android:background="@color/white" />
+
+
 </FrameLayout>
