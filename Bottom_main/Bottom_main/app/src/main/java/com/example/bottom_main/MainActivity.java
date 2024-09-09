@@ -10,15 +10,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.bottom_main.databinding.ActivityMainBinding;
 
@@ -27,14 +25,15 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         binding.bottomNavigationView.setBackground(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,33 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_menu, menu);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // 取得點選項目的id
-        int id = item.getItemId();
-
-        // 依照id判斷點了哪個項目並做相應事件
-        if (id == R.id.location) {
-            // 按下「設定」要做的事
-            Toast.makeText(this, "定位", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if (id == R.id.search) {
-            // 按下「使用說明」要做的事
-            Toast.makeText(this, "搜尋", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
-    void replaceFragment(Fragment fragment) {
+    private  void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
