@@ -1,5 +1,6 @@
 package com.example.bottom_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,6 +37,8 @@ public class HomeFragment extends Fragment {
                 return true;
             case R.id.location:
                 Toast.makeText(getActivity(), "定位", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireActivity(), MapActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
