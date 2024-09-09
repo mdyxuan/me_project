@@ -39,13 +39,6 @@ public class SignupActivity extends AppCompatActivity {
             {
 
 
-
-                if(!validateName() | !validateUserEmail() | !validateUsername() | !validatePassword())
-                {
-                    Toast.makeText(SignupActivity.this, "您註冊失敗!", Toast.LENGTH_SHORT).show();
-                }
-                else if(!validateName() && !validateUserEmail() && !validateUsername() && !validatePassword())
-                {
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");
                     String name = signupName.getText().toString();
@@ -58,11 +51,7 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, "你註冊成功!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
-                }
-                else
-                {
-                    Toast.makeText(SignupActivity.this, "您註冊失敗!", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 
