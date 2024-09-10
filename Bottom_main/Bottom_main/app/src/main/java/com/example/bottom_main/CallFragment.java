@@ -35,7 +35,7 @@ public class CallFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "返回 HomeFragment", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "返回主頁面", Toast.LENGTH_SHORT).show();
 
                 // 使用 FragmentTransaction 切换到 HomeFragment
                 FragmentManager fragmentManager = getParentFragmentManager();

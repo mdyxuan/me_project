@@ -76,7 +76,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView3"
+                        android:id="@+id/account_back"
                         android:layout_width="57dp"
                         android:layout_height="47dp"
                         android:layout_marginStart="16dp"
