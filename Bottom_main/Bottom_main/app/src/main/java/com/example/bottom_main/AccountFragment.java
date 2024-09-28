@@ -38,6 +38,9 @@ public class AccountFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
+        // 加載用戶資料
+        loadUserProfile();
+
         // 返回主頁面的按鈕點擊事件
         account_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,22 +54,20 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        // 獲取當前登入的使用者
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // 使用者名稱在此用 name 來查詢
-            String username = currentUser.getDisplayName(); // 假設你有設置顯示名稱
-            Log.d("AccountFragment", "Current User Name: " + username);
+        return view;
+    }
 
-            // 從 Firebase Realtime Database 中獲取使用者名稱
-            mDatabase.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void loadUserProfile() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            mDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // 確保有資料
                     if (dataSnapshot.exists()) {
-                        String dbUsername = dataSnapshot.child("username").getValue(String.class);
-                        if (dbUsername != null) {
-                            usernameTextView.setText(dbUsername);
+                        String username = dataSnapshot.child("username").getValue(String.class);
+                        if (username != null) {
+                            usernameTextView.setText(username); // 在 TextView 中顯示使用者名稱
                         } else {
                             Toast.makeText(getActivity(), "未找到使用者名稱", Toast.LENGTH_SHORT).show();
                         }
@@ -81,10 +82,7 @@ public class AccountFragment extends Fragment {
                 }
             });
         } else {
-            // 使用者未登入
             Toast.makeText(getActivity(), "尚未登入", Toast.LENGTH_SHORT).show();
         }
-
-        return view;
     }
 }
