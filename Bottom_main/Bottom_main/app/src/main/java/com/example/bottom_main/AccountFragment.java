@@ -1,6 +1,7 @@
 package com.example.bottom_main;
 
 import android.os.Bundle;
+import android.util.Log; // 導入 Log
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -53,20 +54,19 @@ public class AccountFragment extends Fragment {
         // 獲取當前登入的使用者
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            // 取得使用者的 UID，這裡是使用 UID 來獲取資料
-            String uid = currentUser.getUid();
+            // 使用者名稱在此用 name 來查詢
+            String username = currentUser.getDisplayName(); // 假設你有設置顯示名稱
+            Log.d("AccountFragment", "Current User Name: " + username);
 
             // 從 Firebase Realtime Database 中獲取使用者名稱
-            mDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            mDatabase.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // 確保有資料
                     if (dataSnapshot.exists()) {
-                        // 假設資料中有 "username" 欄位
-                        String username = dataSnapshot.child("username").getValue(String.class);
-                        if (username != null) {
-                            // 在 TextView 中顯示使用者名稱
-                            usernameTextView.setText(username);
+                        String dbUsername = dataSnapshot.child("username").getValue(String.class);
+                        if (dbUsername != null) {
+                            usernameTextView.setText(dbUsername);
                         } else {
                             Toast.makeText(getActivity(), "未找到使用者名稱", Toast.LENGTH_SHORT).show();
                         }
@@ -77,7 +77,6 @@ public class AccountFragment extends Fragment {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    // 處理錯誤
                     Toast.makeText(getActivity(), "無法獲取使用者資訊", Toast.LENGTH_SHORT).show();
                 }
             });
