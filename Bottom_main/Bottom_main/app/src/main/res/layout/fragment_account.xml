@@ -27,7 +27,7 @@
                     android:layout_height="256dp">
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/username_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="100dp"
@@ -37,7 +37,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/imageView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
                         app:layout_constraintVertical_bias="0.225" />
 
                     <ImageView
@@ -63,7 +63,7 @@
                         app:layout_constraintVertical_bias="0.454" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/usernameTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"

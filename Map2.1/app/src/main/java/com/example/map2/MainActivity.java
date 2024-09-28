@@ -1,6 +1,4 @@
-package com.example.bottom_main;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.map2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +25,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     private final int FINE_PERMISSION_CODE = 1;
     private GoogleMap myMap;
     Location currentLocation;
@@ -72,7 +70,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     // 當位置獲取成功，初始化地圖
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-                    mapFragment.getMapAsync(MapActivity.this);
+                    mapFragment.getMapAsync(MainActivity.this);
                 }
             }
         });
