@@ -62,7 +62,7 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this, "帳號已被註冊", Toast.LENGTH_SHORT).show();
                         } else {
                             HelperClass helperClass = new HelperClass(name, email, username, password); // 建立HelperClass
-                            reference.child(name).setValue(helperClass).addOnCompleteListener(task -> { // 新增資料
+                            reference.child(username).setValue(helperClass).addOnCompleteListener(task -> { // 新增資料
                                 if (task.isSuccessful()) {
                                     Log.d("MainActivity", "新增資料成功.");
                                 } else {
