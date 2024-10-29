@@ -41,7 +41,7 @@ public class AccountFragment extends Fragment {
         accountBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Returning to home", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "回到主頁面", Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, new HomeFragment());
