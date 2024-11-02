@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class CallFragment extends Fragment {
     private ImageView detailImage; // 用於顯示選擇的圖片
     private Button selectImageBtn; // 用於選擇圖片的按鈕
     private Uri imageUri; // 用於存儲圖片的 URI
+    private Spinner categorySpinner; // 新增 Spinner 元件
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +47,16 @@ public class CallFragment extends Fragment {
         detailDate = view.findViewById(R.id.detailDate); // 找到顯示日期的 TextView
         detailImage = view.findViewById(R.id.detailImage); // 找到顯示圖片的 ImageView
         selectImageBtn = view.findViewById(R.id.selectImageBtn); // 找到選擇圖片的按鈕
+        // 初始化 Spinner
+        categorySpinner = view.findViewById(R.id.categorySpinner);
+
+        // 使用 ArrayAdapter 將分類選項設置給 Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.activity_categories,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
 
         // 设置点击监听器
         create.setOnClickListener(new View.OnClickListener() {
@@ -119,4 +132,5 @@ public class CallFragment extends Fragment {
             }
         }
     }
+
 }
