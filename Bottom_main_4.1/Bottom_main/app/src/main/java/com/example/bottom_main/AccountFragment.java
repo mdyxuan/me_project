@@ -57,12 +57,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        initEditProfileActivityFunctionality(); // 初始化搜尋功能
-        initFriendActivityFunctionality(); // 初始化搜尋功能
+        initEditProfileActivityFunctionality(); // 初始化個人資料功能
+        initFriendActivityFunctionality(); // 初始化好友列表功能
+        initLogoutFunctionality(); // 初始化登出功能
 
         return view;
     }
-    // 歌人列表功能的初始化
+    // 個人資料功能的初始化
     private void initEditProfileActivityFunctionality() {
         // 設定通知按鈕的點擊事件
         ImageView set = binding.accountset; // 假設你在布局中有一個 ID 為 imageView 的 ImageView
@@ -74,7 +75,7 @@ public class AccountFragment extends Fragment {
             }
         });
     }
-    // 歌人列表功能的初始化
+    // 好友列表功能的初始化
     private void initFriendActivityFunctionality() {
         // 設定通知按鈕的點擊事件
         ImageView friend = binding.imageView5; // 假設你在布局中有一個 ID 為 imageView 的 ImageView
@@ -83,6 +84,18 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), FriendActivity.class);
                 startActivity(intent); // 跳轉至 FriendActivity
+            }
+        });
+    }
+    // 好友列表功能的初始化
+    private void initLogoutFunctionality() {
+        // 設定通知按鈕的點擊事件
+        TextView logout = binding.textView6; // 假設你在布局中有一個 ID 為 textView6 的 TextView
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent); // 跳轉至 LoginActivity
             }
         });
     }
