@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BottomNavigation Demo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_map_api_key">AIzaSyDaCOKNysWAqY33mLl65nexqvZB5fOKsso</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string-array name="activity_categories">
+        <item>休閒娛樂</item>
+        <item>運動</item>
+        <item>車聚</item>
+        <item>旅遊</item>
+        <item>美食</item>
+        <item>寵物</item>
+        <item>學習</item>
+    </string-array>
+</resources>
