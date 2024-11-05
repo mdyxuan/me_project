@@ -125,12 +125,12 @@
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/account_set"
+                        app:layout_constraintEnd_toStartOf="@+id/accountset"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.38" />
 
                     <ImageView
-                        android:id="@+id/account_set"
+                        android:id="@+id/accountset"
                         android:layout_width="24dp"
                         android:layout_height="40dp"
                         android:layout_marginEnd="28dp"

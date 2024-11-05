@@ -1,5 +1,6 @@
 package com.example.bottom_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -56,7 +57,20 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        initEditProfileActivityFunctionality(); // 初始化搜尋功能
+
         return view;
     }
-
+    // 歌人列表功能的初始化
+    private void initEditProfileActivityFunctionality() {
+        // 設定通知按鈕的點擊事件
+        ImageView set = binding.accountset; // 假設你在布局中有一個 ID 為 imageView 的 ImageView
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent); // 跳轉至 NotificationActivity
+            }
+        });
+    }
 }
