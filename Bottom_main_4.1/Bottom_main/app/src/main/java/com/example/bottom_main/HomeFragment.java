@@ -300,7 +300,7 @@ public class HomeFragment extends Fragment {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
-    //取Menu定位
+
 
 
 

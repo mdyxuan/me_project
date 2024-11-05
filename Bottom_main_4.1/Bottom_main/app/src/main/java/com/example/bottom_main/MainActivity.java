@@ -17,69 +17,84 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.bottom_main.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    String username, email, name; // 將 username, email 和 name 宣告為成員變數
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // 獲取傳遞過來的資料
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String email = intent.getStringExtra("email");
-        String name = intent.getStringExtra("name");
+        username = intent.getStringExtra("username");
+        email = intent.getStringExtra("email");
+        name = intent.getStringExtra("name");
 
         // 傳遞資料給 HomeFragment
-        Bundle bundle = new Bundle();
-        bundle.putString("username", username);
-        bundle.putString("email", email);
-        bundle.putString("name", name);
+        Bundle homeBundle = new Bundle();
+        homeBundle.putString("username", username);
+        homeBundle.putString("email", email);
+        homeBundle.putString("name", name);
         HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(bundle);
+        homeFragment.setArguments(homeBundle);
 
+        // 替換為 HomeFragment
         replaceFragment(homeFragment);
 
-        //setSupportActionBar(binding.toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        // 設置底部導航視圖
         binding.bottomNavigationView.setBackground(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
 
             switch (item.getItemId()) {
                 case R.id.home:
-                    replaceFragment(new HomeFragment());
+                    // 傳遞資料給 HomeFragment
+                    selectedFragment = new HomeFragment();
+                    Bundle homeArgs = new Bundle();
+                    homeArgs.putString("username", username);
+                    homeArgs.putString("email", email);
+                    homeArgs.putString("name", name);
+                    selectedFragment.setArguments(homeArgs);
                     break;
+
                 case R.id.calendar:
-                    replaceFragment(new CalendarFragment());
+                    selectedFragment = new CalendarFragment();
                     break;
+
                 case R.id.chat:
-                    replaceFragment(new ChatFragment());
+                    selectedFragment = new ChatFragment();
                     break;
+
                 case R.id.account:
-                    replaceFragment(new AccountFragment());
+                    // 傳遞資料給 AccountFragment
+                    selectedFragment = new AccountFragment();
+                    Bundle accountArgs = new Bundle();
+                    accountArgs.putString("username", username);
+                    accountArgs.putString("email", email);
+                    accountArgs.putString("name", name);
+                    selectedFragment.setArguments(accountArgs);
                     break;
+            }
+
+            if (selectedFragment != null) {
+                replaceFragment(selectedFragment);
             }
 
             return true;
         });
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showBottomDialog();
-            }
-        });
-
+        binding.fab.setOnClickListener(view -> showBottomDialog());
     }
-    private  void replaceFragment(Fragment fragment) {
+
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -87,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBottomDialog() {
-
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottomsheetlayout);
@@ -97,49 +111,28 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout liveLayout = dialog.findViewById(R.id.layoutLive);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
-        videoLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                dialog.dismiss();
-                replaceFragment(new CallFragment());
-                Toast.makeText(MainActivity.this,"創建召集版",Toast.LENGTH_SHORT).show();
-
-            }
+        videoLayout.setOnClickListener(v -> {
+            dialog.dismiss();
+            replaceFragment(new CallFragment());
+            Toast.makeText(MainActivity.this, "創建召集版", Toast.LENGTH_SHORT).show();
         });
 
-        shortsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this,"Create a short is Clicked",Toast.LENGTH_SHORT).show();
-
-            }
+        shortsLayout.setOnClickListener(v -> {
+            dialog.dismiss();
+            Toast.makeText(MainActivity.this, "Create a short is Clicked", Toast.LENGTH_SHORT).show();
         });
 
-        liveLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this,"Go live is Clicked",Toast.LENGTH_SHORT).show();
-
-            }
+        liveLayout.setOnClickListener(v -> {
+            dialog.dismiss();
+            Toast.makeText(MainActivity.this, "Go live is Clicked", Toast.LENGTH_SHORT).show();
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelButton.setOnClickListener(view -> dialog.dismiss());
 
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
-
     }
 }
