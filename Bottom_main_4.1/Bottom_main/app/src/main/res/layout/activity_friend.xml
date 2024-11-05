@@ -38,7 +38,7 @@
                     android:id="@+id/friend_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="好友的電子郵件"
+                    android:hint="好友的使用者名稱"
                     android:padding="10dp"
                     android:background="@drawable/rounded_edittext_profile" />
 
@@ -72,7 +72,7 @@
 
             <!-- 登出按鈕 -->
             <Button
-                android:id="@+id/logout_button"
+                android:id="@+id/friendback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="返回"

@@ -103,7 +103,7 @@
 
             <!-- 登出按鈕 -->
             <Button
-                android:id="@+id/logout_button"
+                android:id="@+id/profileback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="返回"
