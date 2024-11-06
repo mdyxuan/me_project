@@ -162,7 +162,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="16dp"
-                                    android:text="- min"
+                                    android:text="-year"
                                     android:textColor="@color/darkblue"
                                     android:textStyle="bold"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +178,7 @@
                                     app:layout_constraintBottom_toBottomOf="@+id/durationTxt"
                                     app:layout_constraintEnd_toStartOf="@+id/durationTxt"
                                     app:layout_constraintTop_toTopOf="@+id/durationTxt"
+                                    app:layout_constraintVertical_bias="0.526"
                                     app:srcCompat="@drawable/hourglass" />
 
                                 <TextView
@@ -185,7 +186,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:text="Duration"
+                                    android:text="時間"
                                     android:textColor="@color/darkblue"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -233,7 +234,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:text="Distance"
+                                    android:text="距離"
                                     android:textColor="@color/darkblue"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -267,20 +268,20 @@
 
                                 <ImageView
                                     android:id="@+id/imageView10"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="39dp"
+                                    android:layout_height="30dp"
                                     android:layout_marginEnd="8dp"
                                     app:layout_constraintBottom_toBottomOf="@+id/bedTxt"
                                     app:layout_constraintEnd_toStartOf="@+id/bedTxt"
                                     app:layout_constraintTop_toTopOf="@+id/bedTxt"
-                                    app:srcCompat="@drawable/bed" />
+                                    app:srcCompat="@drawable/human" />
 
                                 <TextView
                                     android:id="@+id/textView15"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:text="Bed"
+                                    android:text="人數"
                                     android:textColor="@color/darkblue"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
