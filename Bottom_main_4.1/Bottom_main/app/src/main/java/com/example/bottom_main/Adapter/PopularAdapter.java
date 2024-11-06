@@ -36,7 +36,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Viewhold
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         ItemDomain item = items.get(position);
         holder.binding.titleTxt.setText(item.getTitle());
-        holder.binding.priceTxt.setText("$" + item.getPrice());
+        holder.binding.priceTxt.setText("" + item.getPrice());
         holder.binding.addressTxt.setText(item.getAddress());
         holder.binding.scoreTxt.setText(String.valueOf(item.getScore()));
 

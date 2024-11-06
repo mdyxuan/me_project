@@ -10,14 +10,14 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/pic"
-        android:layout_width="wrap_content"
-        android:layout_height="130dp"
+        android:layout_width="237dp"
+        android:layout_height="135dp"
         android:layout_margin="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.circleImageView"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
@@ -30,6 +30,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pic" />
 
@@ -37,20 +38,23 @@
         android:id="@+id/scoreTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="5"
         android:textColor="@color/darkblue"
         app:layout_constraintBottom_toBottomOf="@+id/titleTxt"
         app:layout_constraintEnd_toEndOf="@+id/pic"
-        app:layout_constraintTop_toTopOf="@+id/titleTxt" />
+        app:layout_constraintTop_toTopOf="@+id/titleTxt"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/scoreTxt"
         app:layout_constraintEnd_toStartOf="@+id/scoreTxt"
         app:layout_constraintTop_toTopOf="@+id/scoreTxt"
+        app:layout_constraintVertical_bias="0.833"
         app:srcCompat="@drawable/star" />
 
     <ImageView
@@ -77,13 +81,15 @@
         android:id="@+id/priceTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$0"
+        android:layout_marginStart="16dp"
+        android:text="0"
         android:textColor="@color/blue"
-        android:textStyle="bold"
 
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/addressTxt"
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/textView14"
@@ -96,9 +102,8 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/priceTxt"
         app:layout_constraintStart_toEndOf="@+id/priceTxt"
-        app:layout_constraintTop_toBottomOf="@+id/addressTxt" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/addressTxt"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
